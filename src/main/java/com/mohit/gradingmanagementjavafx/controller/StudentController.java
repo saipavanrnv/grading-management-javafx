@@ -1,6 +1,6 @@
 package com.mohit.gradingmanagementjavafx.controller;
 
-import com.mohit.gradingmanagementjavafx.HelloApplication;
+import com.mohit.gradingmanagementjavafx.GGAResultsApplication;
 import com.mohit.gradingmanagementjavafx.model.LocalUsage;
 import com.mohit.gradingmanagementjavafx.model.SubjectGrade;
 import com.mohit.gradingmanagementjavafx.repository.database;
@@ -100,7 +100,7 @@ public class StudentController implements Initializable {
 
     btn_logout.getScene().getWindow().hide();
 
-    URL resource = HelloApplication.geturl("FXMLDocument.fxml");
+    URL resource = GGAResultsApplication.geturl("FXMLDocument.fxml");
     Parent root = FXMLLoader.load(resource);
     Scene scene = new Scene(root);
     Stage stage = new Stage();

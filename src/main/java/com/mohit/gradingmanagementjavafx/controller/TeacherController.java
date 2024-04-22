@@ -1,6 +1,6 @@
 package com.mohit.gradingmanagementjavafx.controller;
 
-import com.mohit.gradingmanagementjavafx.HelloApplication;
+import com.mohit.gradingmanagementjavafx.GGAResultsApplication;
 import com.mohit.gradingmanagementjavafx.model.LocalUsage;
 import com.mohit.gradingmanagementjavafx.model.StudentDetails;
 import com.mohit.gradingmanagementjavafx.repository.database;
@@ -14,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -31,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class TeacherController implements Initializable {
@@ -182,7 +180,7 @@ public class TeacherController implements Initializable {
 
     btn_logout.getScene().getWindow().hide();
 
-    URL resource = HelloApplication.geturl("FXMLDocument.fxml");
+    URL resource = GGAResultsApplication.geturl("FXMLDocument.fxml");
     Parent root = FXMLLoader.load(resource);
     Scene scene = new Scene(root);
     Stage stage = new Stage();
@@ -321,7 +319,9 @@ public class TeacherController implements Initializable {
 
         StudentDetails containData = new StudentDetails(result.getString("id")
             , result.getString("last_name")
+            , result.getString("email")
             , result.getString("class_belong_to")
+            , result.getString("exam_type")
             , result.getString("maths")
             , result.getString("science")
             , result.getString("social")

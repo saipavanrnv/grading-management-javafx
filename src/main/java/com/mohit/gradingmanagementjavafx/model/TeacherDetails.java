@@ -5,10 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class TeacherDetails {
 
   private Long id;
@@ -18,4 +14,61 @@ public class TeacherDetails {
   private String email;
   private String classBelongTo;
   private String teachingSubject;
+
+  public TeacherDetails(String id, String firstName, String lastName, String email, String classBelongTo, String teachingSubject) {
+    this.id = Long.valueOf(id);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.classBelongTo = classBelongTo;
+    this.teachingSubject = teachingSubject;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getClassBelongTo() {
+    return classBelongTo;
+  }
+
+  public void setClassBelongTo(String classBelongTo) {
+    this.classBelongTo = classBelongTo;
+  }
+
+  public String getTeachingSubject() {
+    return teachingSubject;
+  }
+
+  public void setTeachingSubject(String teachingSubject) {
+    this.teachingSubject = teachingSubject;
+  }
 }

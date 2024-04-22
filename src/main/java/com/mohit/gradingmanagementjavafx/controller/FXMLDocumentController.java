@@ -1,6 +1,6 @@
 package com.mohit.gradingmanagementjavafx.controller;
 
-import com.mohit.gradingmanagementjavafx.HelloApplication;
+import com.mohit.gradingmanagementjavafx.GGAResultsApplication;
 import com.mohit.gradingmanagementjavafx.model.LocalUsage;
 import com.mohit.gradingmanagementjavafx.repository.database;
 import javafx.fxml.FXML;
@@ -84,11 +84,11 @@ public class FXMLDocumentController implements Initializable {
 
               URL resource = null;
               if (role.equalsIgnoreCase("Admin")) {
-                  resource = HelloApplication.geturl("Admin-view.fxml");
+                  resource = GGAResultsApplication.geturl("Admin-view.fxml");
               } else if (role.equalsIgnoreCase("Teacher")) {
-                  resource = HelloApplication.geturl("Teacher-view.fxml");
+                  resource = GGAResultsApplication.geturl("Teacher-view.fxml");
               } else if (role.equalsIgnoreCase("Student")) {
-                  resource = HelloApplication.geturl("Student-view.fxml");
+                  resource = GGAResultsApplication.geturl("Student-view.fxml");
               }
 
               LocalUsage.lastName = result.getString("last_name");

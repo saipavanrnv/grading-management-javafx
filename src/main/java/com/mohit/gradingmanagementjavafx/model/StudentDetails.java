@@ -36,11 +36,13 @@ public class StudentDetails {
         '}';
   }
 
-  public StudentDetails(String id, String lastName, String classBelongTo, String maths, String science, String social, String regionalLanguage,
+  public StudentDetails(String id, String lastName, String email, String classBelongTo, String examType, String maths, String science, String social, String regionalLanguage,
                         String computerSciences) {
     this.id = Long.valueOf(id);
     this.lastName = lastName;
+    this.email = email;
     this.classBelongTo = classBelongTo;
+    this.examType = examType;
     this.maths = maths;
     this.science = science;
     this.social = social;

@@ -176,7 +176,7 @@
                 <Button fx:id="add_teacher" layoutX="28.0" layoutY="336.0" mnemonicParsing="false" onAction="#addTeacher" prefHeight="43.0" prefWidth="116.0" styleClass="insert-button" stylesheets="@../../../admin.css" text="Add Teacher" />
                 <Button fx:id="search_teacher" layoutX="188.0" layoutY="336.0" mnemonicParsing="false" onAction="#searchTeacher" prefHeight="43.0" prefWidth="93.0" styleClass="update-button" stylesheets="@../../../admin.css" text="Update" />
                 <Separator layoutX="312.0" layoutY="93.0" orientation="VERTICAL" prefHeight="469.0" prefWidth="0.0" />
-                <TableView fx:id="teacher_table_view" layoutX="325.0" layoutY="87.0" onMouseClicked="#selectData" prefHeight="469.0" prefWidth="475.0">
+                <TableView fx:id="teacher_table_view" focusTraversable="false" layoutX="325.0" layoutY="87.0" onMouseClicked="#selectData" prefHeight="469.0" prefWidth="475.0">
                     <columns>
                         <TableColumn fx:id="col_teacher_lastname" prefWidth="131.5555419921875" text="Last Name" />
                         <TableColumn fx:id="col_teacher_email" prefWidth="138.2222900390625" text="Email" />
@@ -233,7 +233,7 @@
                 <Button fx:id="add_student" layoutX="55.0" layoutY="335.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="43.0" prefWidth="116.0" styleClass="insert-button" stylesheets="@../../../admin.css" text="Add Student" />
                 <Button fx:id="update_student" layoutX="195.0" layoutY="335.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="43.0" prefWidth="93.0" styleClass="update-button" stylesheets="@../../../admin.css" text="Update" />
                 <Separator layoutX="380.0" layoutY="87.0" orientation="VERTICAL" prefHeight="469.0" prefWidth="0.0" />
-                <TableView fx:id="student_table_view" layoutX="429.0" layoutY="87.0" onMouseClicked="#selectData" prefHeight="469.0" prefWidth="368.0">
+                <TableView fx:id="student_table_view" focusTraversable="false" layoutX="429.0" layoutY="87.0" onMouseClicked="#selectData" prefHeight="469.0" prefWidth="368.0">
                     <columns>
                         <TableColumn fx:id="col_student_lastname" prefWidth="124.88885498046875" text="Last Name" />
                         <TableColumn fx:id="col_student_email" prefWidth="141.33331298828125" text="Email" />

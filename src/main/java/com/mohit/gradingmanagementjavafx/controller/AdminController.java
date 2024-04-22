@@ -1,6 +1,6 @@
 package com.mohit.gradingmanagementjavafx.controller;
 
-import com.mohit.gradingmanagementjavafx.HelloApplication;
+import com.mohit.gradingmanagementjavafx.GGAResultsApplication;
 import com.mohit.gradingmanagementjavafx.model.LocalUsage;
 import com.mohit.gradingmanagementjavafx.model.StudentDetails;
 import com.mohit.gradingmanagementjavafx.model.TeacherDetails;
@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AdminController implements Initializable {
@@ -108,7 +110,7 @@ public class AdminController implements Initializable {
   private PasswordField student_password;
 
   @FXML
-  private TableView<?> student_table_view;
+  private TableView<StudentDetails> student_table_view;
 
   @FXML
   private ComboBox<String> teacher_class;
@@ -132,7 +134,7 @@ public class AdminController implements Initializable {
   private ComboBox<String> teacher_subject;
 
   @FXML
-  private TableView<?> teacher_table_view;
+  private TableView<TeacherDetails> teacher_table_view;
 
   @FXML
   private Label total_student;
@@ -269,6 +271,7 @@ public class AdminController implements Initializable {
             if (rowsAffected1 > 0) {
               clearTeacherForm(); // Clearing the teacher form once it's inserted
               sendAlert(Alert.AlertType.INFORMATION, "Insert Successful", "Added the new Teacher");
+              loadTeacherTable();
             }
 
           } catch (Exception e) {
@@ -300,6 +303,7 @@ public class AdminController implements Initializable {
             if (rowsAffected1 > 0) {
               clearStudentForm(); // Clearing the student form once it's inserted
               sendAlert(Alert.AlertType.INFORMATION, "Insert Successful", "Added the new Student");
+              loadStudentTable();
             }
 
           } catch (Exception e) {
@@ -338,10 +342,12 @@ public class AdminController implements Initializable {
       student_page.setVisible(false);
       totalCounts(); // STATS right away!
     } else if (btn_teacher.isFocused()) {
+      loadTeacherTable();
       home_page.setVisible(false);
       teacher_page.setVisible(true);
       student_page.setVisible(false);
     } else if (btn_student.isFocused()) {
+      loadStudentTable();
       home_page.setVisible(false);
       teacher_page.setVisible(false);
       student_page.setVisible(true);
@@ -378,7 +384,7 @@ public class AdminController implements Initializable {
 
     btn_logout.getScene().getWindow().hide();
 
-    URL resource = HelloApplication.geturl("FXMLDocument.fxml");
+    URL resource = GGAResultsApplication.geturl("FXMLDocument.fxml");
     Parent root = FXMLLoader.load(resource);
     Scene scene = new Scene(root);
     Stage stage = new Stage();
@@ -438,7 +444,96 @@ public class AdminController implements Initializable {
     account(); // Displays the lastName of user below the "Welcome"
     totalCounts(); // STATS right away!
     classComboBox(); // Dropdown menu for classes
-    subjectComboBox(); // Dropdown menu for subjects
+    subjectComboBox();// Dropdown menu for subjects
+  }
+
+  private void loadTeacherTable() {
+    connect = database.connectDb();
+
+    String sql = "SELECT * FROM tbl_teacher";
+
+    try {
+
+      prepare = connect.prepareStatement(sql);
+
+      result = prepare.executeQuery();
+
+      ObservableList<TeacherDetails> teacherRecord = FXCollections.observableArrayList();
+
+      while (result.next()) {
+
+        TeacherDetails teacherData = new TeacherDetails(result.getString("id")
+            , result.getString("first_name")
+            , result.getString("last_name")
+            , result.getString("email")
+            , result.getString("class_belong_to")
+            , result.getString("teaching_subject"));
+
+        teacherRecord.addAll(teacherData);
+      }
+
+      if (!teacherRecord.isEmpty()) {
+        // TO SHOW THE DATA TO TABLE VIEW
+        col_teacher_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        col_teacher_subject.setCellValueFactory(new PropertyValueFactory<>("teachingSubject"));
+        col_teacher_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_teacher_class.setCellValueFactory(new PropertyValueFactory<>("classBelongTo"));
+      }
+
+      teacher_table_view.setItems(teacherRecord);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void loadStudentTable() {
+    connect = database.connectDb();
+
+    String sql = "SELECT * FROM tbl_student";
+
+    try {
+
+      prepare = connect.prepareStatement(sql);
+
+      result = prepare.executeQuery();
+
+      ObservableList<StudentDetails> studentRecords = FXCollections.observableArrayList();
+
+      while (result.next()) {
+
+        StudentDetails containData = new StudentDetails(result.getString("id")
+            , result.getString("last_name")
+            , result.getString("email")
+            , result.getString("class_belong_to")
+            , result.getString("exam_type")
+            , result.getString("maths")
+            , result.getString("science")
+            , result.getString("social")
+            , result.getString("regional_language")
+            , result.getString("computer_sciences"));
+
+        studentRecords.addAll(containData);
+      }
+
+      if (!studentRecords.isEmpty()) {
+        System.out.println(studentRecords);
+        studentRecords = studentRecords.stream()
+            .collect(Collectors.groupingBy(StudentDetails::getEmail))
+            .values().stream()
+            .map(list -> list.get(0))
+            .collect(
+                Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableArrayList
+                ));
+        // TO SHOW THE DATA TO TABLE VIEW
+        col_student_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        col_student_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_student_class.setCellValueFactory(new PropertyValueFactory<>("classBelongTo"));
+      }
+
+      student_table_view.setItems(studentRecords);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public void account() {

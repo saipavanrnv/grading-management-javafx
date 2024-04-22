@@ -15,21 +15,19 @@ import java.net.URL;
 
 @SpringBootApplication
 @ComponentScan("com.mohit.gradingmanagementjavafx.controller")
-public class HelloApplication extends Application {
+public class GGAResultsApplication extends Application {
 
   private double x = 0 ;
   private double y = 0;
 
   public static URL geturl(String documentName) {
-    return HelloApplication.class.getResource(documentName);
+    return GGAResultsApplication.class.getResource(documentName);
   }
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent fxmlLoader = FXMLLoader.load(HelloApplication.class.getResource("FXMLDocument.fxml"));
+    Parent fxmlLoader = FXMLLoader.load(GGAResultsApplication.class.getResource("FXMLDocument.fxml"));
     Scene scene = new Scene(fxmlLoader);
-    stage.setTitle("Hello!");
-
     fxmlLoader.setOnMousePressed((MouseEvent event) ->{
       x = event.getSceneX();
       y = event.getSceneY();
