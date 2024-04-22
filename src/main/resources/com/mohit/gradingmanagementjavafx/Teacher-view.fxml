@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mohit.gradingmanagementjavafx.controller.TeacherController">
+    <children>
+        <AnchorPane fx:id="navbar" prefHeight="602.0" prefWidth="146.0" styleClass="navbar" stylesheets="@../../../admin.css">
+            <children>
+                <Circle fx:id="circle" fill="#b6cce1" layoutX="95.0" layoutY="85.0" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
+                <ImageView fitHeight="110.0" fitWidth="103.0" layoutX="38.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../lotus.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="52.0" layoutY="157.0" text="Welcome!," textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="user" alignment="CENTER" layoutX="10.0" layoutY="198.0" prefHeight="31.0" prefWidth="170.0" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="26.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btn_overview" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" onAction="#changePage" prefWidth="170.0" styleClass="navbutton" stylesheets="@../../../admin.css" text="Overview" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.2em" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_records" layoutX="10.0" layoutY="321.0" mnemonicParsing="false" onAction="#changePage" prefWidth="170.0" styleClass="navbutton" stylesheets="@../../../admin.css" text="Student Records" textFill="WHITE" AnchorPane.topAnchor="321.0">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_logout" layoutX="2.0" layoutY="539.0" mnemonicParsing="false" onAction="#changePage" prefHeight="37.0" prefWidth="157.0" styleClass="logout-button" stylesheets="@../../../admin.css" text="Logout" textFill="WHITE">
+                    <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="topbar" prefHeight="88.0" prefWidth="824.0">
+            <children>
+                <AnchorPane layoutX="180.0" prefHeight="97.0" prefWidth="824.0" styleClass="card-top" stylesheets="@../../../admin.css">
+                    <children>
+                        <Label prefHeight="73.0" prefWidth="648.0" text="Gradient Grove Academy" textFill="WHITE">
+                            <font>
+                                <Font name="Berlin Sans FB" size="45.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="283.0" layoutY="46.0" prefHeight="53.0" prefWidth="327.0" text="We are more than just a school" textFill="WHITE">
+                            <font>
+                                <Font name="Freestyle Script" size="32.0" />
+                            </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="57.0" styleClass="exit" stylesheets="@../../../admin.css" AnchorPane.rightAnchor="2.0">
+                            <graphic>
+                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="overview_page" layoutX="180.0" layoutY="30.0" prefHeight="570.0" prefWidth="824.0" />
+        <AnchorPane fx:id="records_page" layoutX="190.0" layoutY="30.0" prefHeight="570.0" prefWidth="747.0">
+            <children>
+                <AnchorPane fx:id="warning_message" layoutX="121.0" layoutY="67.0" prefHeight="24.0" prefWidth="506.0" visible="false">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#32e9dc" height="24.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="506.0" />
+                        <Label layoutX="7.0" layoutY="5.0" prefHeight="17.0" prefWidth="506.0" text="Note :: Since you are not class teacher for this class, you can only edit  marks of your subject" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="student_editing_pane" layoutX="4.0" layoutY="262.0" prefHeight="292.0" prefWidth="291.0" visible="false">
+                    <children>
+                        <Label fx:id="form_last_name" layoutX="11.0" layoutY="20.0" text="Last Name:">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_last_name_field" editable="false" layoutX="97.0" layoutY="16.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="17.0" prefWidth="163.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="form_rl" layoutX="60.0" layoutY="55.0" text="RL :">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_rl_field" editable="false" layoutX="97.0" layoutY="50.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="26.0" prefWidth="85.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="form_cs" layoutX="59.0" layoutY="91.0" text="CS :">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_cs_field" editable="false" layoutX="97.0" layoutY="86.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="26.0" prefWidth="85.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="form_mat" layoutX="55.0" layoutY="128.0" text="Mat :">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_mat_field" editable="false" layoutX="97.0" layoutY="123.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="26.0" prefWidth="85.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="form_sci" layoutX="59.0" layoutY="165.0" text="Sci :">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_sci_field" editable="false" layoutX="97.0" layoutY="160.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="26.0" prefWidth="85.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="form_soc" layoutX="56.0" layoutY="204.0" text="Soc :">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="form_soc_field" editable="false" layoutX="97.0" layoutY="199.0" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="26.0" prefWidth="85.0" style="-fx-border-color: #adadad;" styleClass="textfield-record-design" stylesheets="@../../../admin.css">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="update_records" layoutX="93.0" layoutY="237.0" mnemonicParsing="false" onAction="#updateStudentRecords" prefHeight="24.0" prefWidth="93.0" styleClass="update-button" stylesheets="@../../../admin.css" text="Update" />
+                    </children>
+                </AnchorPane>
+                <Separator layoutX="7.0" layoutY="258.0" prefHeight="4.0" prefWidth="291.0" />
+                <Separator layoutX="300.0" layoutY="106.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="6.0" />
+                <Label layoutX="390.0" layoutY="527.0" prefHeight="37.0" prefWidth="355.0" text="* RL = Reational Language, CS = Computer Science, Mat = Maths,   Sci = Science, Soc = Social" wrapText="true" />
+                <TableView fx:id="student_table_view" layoutX="325.0" layoutY="103.0" onMouseClicked="#selectData" prefHeight="420.0" prefWidth="475.0">
+                    <columns>
+                        <TableColumn fx:id="col_lastname" prefWidth="139.5555419921875" text="Last Name" />
+                        <TableColumn fx:id="col_rl" prefWidth="65.3333740234375" text="RL" />
+                        <TableColumn fx:id="col_cs" prefWidth="66.22216796875" text="CS" />
+                        <TableColumn fx:id="col_mat" prefWidth="72.0" text="Mat" />
+                        <TableColumn fx:id="col_sci" minWidth="9.333251953125" prefWidth="64.4443359375" text="Sci" />
+                        <TableColumn fx:id="col_soc" prefWidth="62.66650390625" text="Soc" />
+                        <TableColumn fx:id="col_id" prefWidth="62.66650390625" text="id" visible="false" />
+                        <TableColumn fx:id="col_class" prefWidth="62.66650390625" text="class" visible="false" />
+                    </columns>
+                </TableView>
+                <Label layoutX="50.0" layoutY="121.0" text="Class:">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="student_class" layoutX="104.0" layoutY="118.0" onAction="#classComboBox" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="25.0" prefWidth="163.0" promptText="Select class" styleClass="textfield-record-design" stylesheets="@../../../admin.css" />
+                <Label layoutX="11.0" layoutY="160.0" text="Exam Type:">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="student_examtype" layoutX="103.0" layoutY="156.0" onAction="#classComboBox" onKeyTyped="#textfieldRecord" onMouseClicked="#textfieldRecord" onMouseDragged="#textfieldRecord" prefHeight="25.0" prefWidth="163.0" promptText="Select exam" styleClass="textfield-record-design" stylesheets="@../../../admin.css" />
+                <Button fx:id="search_student" layoutX="94.0" layoutY="206.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="24.0" prefWidth="93.0" styleClass="update-button" stylesheets="@../../../admin.css" text="Search" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

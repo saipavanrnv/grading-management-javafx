@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Gradient Grove Academy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <style>
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: #fccb90;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+        }
+
+        @media (min-width: 768px) {
+            .gradient-form {
+                height: 100vh !important;
+            }
+        }
+        @media (min-width: 769px) {
+            .gradient-custom-2 {
+                border-top-right-radius: .3rem;
+                border-bottom-right-radius: .3rem;
+            }
+        }
+        /* Optional: Styles for form validation */
+        input:invalid,
+        select:invalid {
+            border-color: #dc3545;
+        }
+
+        input:valid,
+        select:valid {
+            border-color: #28a745;
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+            alert([[${errorMessage}]]);
+        };
+    </script>
+
+    <script>
+        function login() {
+            // Get username and password from the form inputs
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Create a JSON object with username and password
+            var loginData = {
+                username: username,
+                password: password
+            };
+
+            // Send the login data to the JavaFX application
+            window.java.login(JSON.stringify(loginData));
+        }
+    </script>
+</head>
+<body>
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <h4 class="mt-1 mb-5 pb-1">We are The Gradient Grove Academy Team</h4>
+                                </div>
+
+                                <form>
+                                    <p>Please login to your account</p>
+
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <input type="email" id="username" class="form-control"
+                                               name="username" placeholder="Email address" required/>
+                                        <label class="form-label" for="username" >Username</label>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <input type="password" id="password" class="form-control"
+                                               name="password" required/>
+                                        <label class="form-label" for="password">Password</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="togglePassword" onchange="togglePasswordVisibility()">
+                                        <label class="form-check-label" for="togglePassword">Show Password</label>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button data-mdb-button-init data-mdb-ripple-init
+                                                class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                type="submit" onclick="login()">Log in</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">We are more than just a school</h4>
+                                <p class="fst-italic">Welcome to Gradient Grove Academy's Results Management Portal. This platform empowers teachers and students to efficiently manage and track academic performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var checkbox = document.getElementById("togglePassword");
+
+        if (checkbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
+</body>
+</html>

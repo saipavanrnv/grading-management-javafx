@@ -1,0 +1,53 @@
+
+/* Apply Bootstrap styles to JavaFX components */
+.text-field {
+    /* Example: Apply Bootstrap form-control class to text fields */
+    -fx-background-color: #fff;
+    -fx-background-radius: 0;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 1px;
+}
+
+.password-field {
+    /* Example: Apply Bootstrap form-control class to password fields */
+    -fx-background-color: #fff;
+    -fx-background-radius: 0;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 1px;
+}
+
+.button {
+    /* Example: Apply Bootstrap btn and btn-primary classes to buttons */
+    -fx-background-color: #007bff;
+    -fx-text-fill: #fff;
+    -fx-border-color: #007bff;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 1px;
+    -fx-cursor: hand;
+}
+
+.form-control {
+  -fx-display: block;
+  -fx-width: 100%;
+  -fx-padding: 0.375em 0.75em;
+  -fx-font-size: 1em;
+  -fx-font-weight: 400;
+  -fx-line-height: 1.5;
+  -fx-color: #495057;
+  -fx-background-color: #fff;
+  -fx-background-clip: padding-box;
+  -fx-border-radius: 0.25em;
+  -fx-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
